@@ -82,7 +82,7 @@ RUN apk add --no-cache \
         oniguruma-dev
 
 # Install PHP-FPM and Nginx
-RUN apk add --no-cache nginx supervisor
+RUN apk add --no-cache nginx supervisor curl
 
 # Configure PHP for production
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
