@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: learning-docker
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    env_file:
+      - .env.docker
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - AUTO_MIGRATE=true
+    volumes:
+      # Persist SQLite database
+      - ./database/database.sqlite:/var/www/html/database/database.sqlite
+      # Persist storage
+      - ./storage/app:/var/www/html/storage/app
+      - ./storage/logs:/var/www/html/storage/logs
+    networks:
+      - laravel
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/up"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add Redis for caching/sessions if needed
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: laravel_redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - laravel
+  #   healthcheck:
+  #     test: ["CMD", "redis-cli", "ping"]
+  #     interval: 30s
+  #     timeout: 3s
+  #     retries: 3
+
+networks:
+  laravel:
+    driver: bridge

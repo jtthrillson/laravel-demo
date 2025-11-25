@@ -1,0 +1,54 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDEs
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# Dependencies
+/vendor
+/node_modules
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+/public/hot
+/public/storage
+/public/build
+
+# Storage
+/storage/*.key
+/storage/logs
+/storage/framework/cache/**
+/storage/framework/sessions/**
+/storage/framework/views/**
+
+# Bootstrap cache (contains dev service providers)
+/bootstrap/cache/*
+
+# Testing
+/tests
+/.phpunit.cache
+/phpunit.xml
+
+# Database
+/database/*.sqlite
+/database/*.sqlite-journal
+
+# Documentation
+README.md
+*.md
+
+# Misc
+.editorconfig
+.php-cs-fixer.php
+.php-cs-fixer.cache
+_ide_helper.php
