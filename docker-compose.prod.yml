@@ -10,12 +10,12 @@ services:
     ports:
       - "8080:80"
     env_file:
-      - .env.docker
+      - .env
     environment:
-      - APP_ENV=production
-      - APP_DEBUG=false
       - AUTO_MIGRATE=true
     volumes:
+      # Persist .env file
+      - /var/www/.env:/var/www/html/.env
       # Persist SQLite database
       - ./database/database.sqlite:/var/www/html/database/database.sqlite
       # Persist storage
