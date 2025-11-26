@@ -53,6 +53,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/app
-            docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml down
+            docker rmi -f ghcr.io/jtthrillson/laravel-demo:latest || true
+            docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml up -d
