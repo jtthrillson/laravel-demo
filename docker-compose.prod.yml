@@ -2,9 +2,12 @@ version: '3.8'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/jtthrillson/laravel-demo:latest
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#      args:
+#        DEPLOY_TIME: ${DEPLOY_TIME:-}
     container_name: learning-docker
     restart: unless-stopped
     ports:

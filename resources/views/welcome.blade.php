@@ -163,6 +163,17 @@
                 <div class="meta-label">PHP</div>
                 <div class="meta-value">{{ PHP_VERSION }}</div>
             </div>
+            <div class="meta-item">
+                <div class="meta-label">Deployed</div>
+                <div class="meta-value">
+                    @php
+                        $deployTimestamp = storage_path('app/deployment_timestamp.txt');
+                        echo file_exists($deployTimestamp)
+                            ? trim(file_get_contents($deployTimestamp))
+                            : 'N/A';
+                    @endphp
+                </div>
+            </div>
         </div>
     </div>
 </body>

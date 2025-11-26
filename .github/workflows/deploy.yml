@@ -37,6 +37,8 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            DEPLOY_TIME=${{ github.event.head_commit.timestamp }} (${{ github.sha }})
 
   deploy:
     needs: build-and-push

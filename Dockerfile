@@ -185,6 +185,10 @@ COPY --from=node-builder --chown=www-data:www-data /app/public/build ./public/bu
 # Copy application files
 COPY --chown=www-data:www-data . .
 
+# Create deployment timestamp file
+ARG DEPLOY_TIME
+RUN echo "${DEPLOY_TIME:-$(date -u +%Y-%m-%d\ %H:%M:%S\ UTC)}" > /var/www/html/storage/app/deployment_timestamp.txt
+
 # Create storage and bootstrap/cache directories if they don't exist
 RUN mkdir -p storage/framework/{cache,sessions,views} \
     storage/logs \
